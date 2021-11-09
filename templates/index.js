@@ -10,10 +10,10 @@ loadFile = () =>{
         //console.log("读取结果转为JSON：");
         let json = JSON.parse(this.result);
         //console.log(json.name);
-        console.log("nmsl");
         var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
-        httpRequest.open('POST', 'http://127.0.0.1:8000/load_file', true); //第二步：打开连接/***发送json格式文件必须设置请求头 ；如下 - */
+        httpRequest.open('POST', "http://127.0.0.1:8000/load_file/", true); //第二步：打开连接/***发送json格式文件必须设置请求头 ；如下 - */
         httpRequest.setRequestHeader("Content-type","application/json");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）var obj = { name: 'zhansgan', age: 18 };
+        console.log("json");
         httpRequest.send(JSON.stringify(json));//发送请求 将json写入send中
         var arrayRouterAdress=[];
         var arrayRouterName=[];

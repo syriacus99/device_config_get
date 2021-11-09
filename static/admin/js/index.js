@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-{% load static %}
-{% csrf_token %}
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% csrf_token %}
-    <script type="text/javascript" src='index.js'></script>
-    <script>
-    loadFile = () =>{
+loadFile = () =>{
     var selectedFile = document.getElementById("openFile").files[0];//获取读取的File对象
     var name = selectedFile.name;//读取选中文件的文件名
     var size = selectedFile.size;//读取选中文件的大小
@@ -23,9 +11,9 @@
         let json = JSON.parse(this.result);
         //console.log(json.name);
         var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
-        console.log(json);
-        httpRequest.open('POST', "/load_file/", true); //第二步：打开连接/***发送json格式文件必须设置请求头 ；如下 - */
+        httpRequest.open('POST', "http://127.0.0.1:8000/load_file/", true); //第二步：打开连接/***发送json格式文件必须设置请求头 ；如下 - */
         httpRequest.setRequestHeader("Content-type","application/json");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）var obj = { name: 'zhansgan', age: 18 };
+        console.log("json");
         httpRequest.send(JSON.stringify(json));//发送请求 将json写入send中
         var arrayRouterAdress=[];
         var arrayRouterName=[];
@@ -33,8 +21,4 @@
         //    console.log(each_router)
         //}))
     };
-}</script>
-    <input type="file" name="data" id="openFile" />
-    <button onclick="loadFile()">导入配置</button>
-</body>
-</html>
+}
